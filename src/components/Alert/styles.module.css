@@ -1,0 +1,90 @@
+.alert {
+    position: relative;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+.banner {
+    margin: 0 1rem 1rem 1rem;
+    border-radius: 0 0 8px 8px ;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { 
+        opacity: 1;
+        visibility: visible; 
+    }
+    to { 
+        opacity: 0; 
+        visibility: hidden;
+    }
+}
+.wrapper {
+    /* visibility: hidden;
+    opacity: 0; */
+    /* transition: visibility 1s ease-in,opacity 1s ease-in; */
+}
+.show {
+    visibility: visible;
+    opacity: 1;
+    animation: fadeIn 1s ease-in;
+    /* animation: visibility 1s ease-in,opacity; */
+}
+
+.hide {
+    visibility: hidden;
+    opacity: 0;
+    animation: fadeOut 1s ease-out;
+
+}
+
+.actions {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.actions button {
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 0.3rem 0.75rem; 
+}
+
+.actions button.success {
+    border-color: #2e6129;
+    color: #2e6129;
+}
+
+.success {
+    background-color: #a8f6a1;
+}
+.success .alertTitle {
+    color: #2e6129;
+}
+.success .alertMessage {
+    color: #194d15;
+}
+
+.failure {
+    background-color: rgb(247, 147, 117);
+}
+
+.info {
+    background-color: rgb(117, 228, 247);
+}
+
+.alertTitle {
+    font-size: 1.25rem;
+}
+
+.alertMessage {
+    font-size: 0.85rem;
+}

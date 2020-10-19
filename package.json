@@ -13,6 +13,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "3.4.3",
+    "react-transition-group": "^4.4.1",
     "typescript": "^3.7.5"
   },
   "scripts": {
@@ -40,5 +41,8 @@
     "env": {},
     "componentsDefaultDirectory": "components/{name}",
     "packageManager": "yarn"
+  },
+  "devDependencies": {
+    "@types/react-transition-group": "^4.4.0"
   }
 }
