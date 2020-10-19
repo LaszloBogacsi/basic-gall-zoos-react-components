@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import styles from './styles.module.css';
-
+import './Alert.css'
 type AlertType = 'success' | 'failure' | 'info'
 
 interface AlertProps {
@@ -18,7 +17,7 @@ interface AlertProps {
 }
 
 export default (props: AlertProps) => {
-    const {unMountOnExit, show} = props;
+    const {unMountOnExit, show, banner} = props;
     const shouldUnMountOnExit = unMountOnExit || false;
     const [unmount, setUnmount] = useState(false);
 
@@ -35,9 +34,8 @@ export default (props: AlertProps) => {
     }, [show])
     return (
         <React.Fragment>
-
              {!unmount ?
-            <div onAnimationEnd={(e) => onTransitionEnd(e)} className={`${styles[props.show ? 'show' : 'hide']} `}>
+            <div onAnimationEnd={(e) => onTransitionEnd(e)} className={`${props.show ? 'show' : 'hide'} ${banner ? 'float' : ''}`}>
                 <ClosableAlert {...props} />
             </div>
              : null}
@@ -55,16 +53,16 @@ const ClosableAlert = (props: ClosableAlertProps) => {
     if (delay) {
         setTimeout(close, delay)
     }
-    const style = `${styles.alert} ${styles[type]} ${banner ? styles.banner : ''} ${dismissible ? styles.dismissible : ''}`;
+    const style = `alert ${type} ${banner ? 'banner' : ''} ${dismissible ? 'dismissible' : ''}`;
     return (
         <div className={style}>
             <div>
-                {title ? <div className={styles.alertTitle}>{title}</div> : null}
-                <p className={styles.alertMessage}>{message}</p>
+                {title ? <div className={"alertTitle"}>{title}</div> : null}
+                <p className={"alertMessage"}>{message}</p>
             </div>
-            <div className={styles.actions}>
-                {dismissible ? <div className={styles.dismiss} onClick={close}>+</div> : null}
-                {action ? <button className={styles[type]} onClick={() => action()}>{btnTitle}</button> : null}
+            <div className={"actions"}>
+                {dismissible ? <div className={"dismiss"} onClick={close}>+</div> : null}
+                {action ? <button className={`${type}`} onClick={() => action()}>{btnTitle}</button> : null}
             </div>
         </div>
     )
