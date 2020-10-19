@@ -3,10 +3,11 @@
     text-align: left;
     display: flex;
     justify-content: space-between;
-    padding: 1rem 2rem;
+    padding: 0 1rem;
 }
 
 .banner {
+    padding: 1rem 2rem;
     margin: 0 1rem 1rem 1rem;
     border-radius: 0 0 8px 8px ;
 }
@@ -26,30 +27,36 @@
         visibility: hidden;
     }
 }
-.wrapper {
-    /* visibility: hidden;
-    opacity: 0; */
-    /* transition: visibility 1s ease-in,opacity 1s ease-in; */
-}
+
 .show {
     visibility: visible;
     opacity: 1;
-    animation: fadeIn 1s ease-in;
-    /* animation: visibility 1s ease-in,opacity; */
+    animation: fadeIn 0.5s ease-in;
 }
 
 .hide {
     visibility: hidden;
     opacity: 0;
-    animation: fadeOut 1s ease-out;
-
+    animation: fadeOut 0.5s ease-out;
 }
 
 .actions {
     display: flex;
-    flex-flow: column;
+    flex-flow: row-reverse wrap;
     justify-content: space-between;
+    align-items: center;
+    column-gap: 3rem
+}
+
+.banner .actions {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
     align-items: flex-end;
+    row-gap: 1rem;
+}
+.banner .actions .dismissible {
+    justify-content: space-between;
 }
 
 .actions button {
@@ -58,13 +65,9 @@
     padding: 0.3rem 0.75rem; 
 }
 
-.actions button.success {
-    border-color: #2e6129;
-    color: #2e6129;
-}
-
 .success {
     background-color: #a8f6a1;
+    color: #194d15;
 }
 .success .alertTitle {
     color: #2e6129;
@@ -73,13 +76,42 @@
     color: #194d15;
 }
 
+.actions button.success {
+    border-color: #2e6129;
+    color: #2e6129;
+}
+
 .failure {
-    background-color: rgb(247, 147, 117);
+    background-color: #f1a19f;
+    color: #541210;
+}
+.failure .alertTitle {
+    color: #6d2827;
+}
+.failure .alertMessage {
+    color: #541210;
+}
+.actions button.failure {
+    border-color: #6d2827;
+    color: #6d2827;
 }
 
 .info {
-    background-color: rgb(117, 228, 247);
+    background-color: #8AE6F3;
+    color: #11464e;
 }
+
+.info .alertTitle {
+    color: #1e5e67;
+}
+.info .alertMessage {
+    color: #11464e;
+}
+.actions button.info {
+    border-color: #1e5e67;
+    color: #1e5e67;
+}
+
 
 .alertTitle {
     font-size: 1.25rem;
@@ -87,4 +119,9 @@
 
 .alertMessage {
     font-size: 0.85rem;
+}
+
+.dismiss {
+    cursor: pointer;
+    transform: rotate(45deg) scale(2) translateY(-2px);
 }

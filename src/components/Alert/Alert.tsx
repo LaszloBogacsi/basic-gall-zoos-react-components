@@ -1,51 +1,70 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles.module.css';
-import { CSSTransition } from 'react-transition-group';
 
 type AlertType = 'success' | 'failure' | 'info'
 
 interface AlertProps {
-    banner: boolean
-    cancellable: boolean
+    show: boolean
+    onDismiss: (show: boolean) => void
     type: AlertType
-    delay: number
-    title: string
     message: string
-    action: () => void
-    buttonTitle: string
+    unMountOnExit?: boolean
+    banner?: boolean
+    dismissible?: boolean
+    delay?: number
+    title?: string
+    action?: () => void
+    buttonTitle?: string
 }
 
 export default (props: AlertProps) => {
-    const [show, setShow] = useState(true);
+    const {unMountOnExit, show} = props;
+    const shouldUnMountOnExit = unMountOnExit || false;
+    const [unmount, setUnmount] = useState(false);
 
+    const onTransitionEnd = (e: any) => {
+        console.log(e);
+        if (!show && shouldUnMountOnExit) {
+            setUnmount(true);
+        }
+    };
+
+    useEffect(() => {
+        setUnmount(false);
+
+    }, [show])
     return (
         <React.Fragment>
 
-            {/* {show ?  */}
-            <div className={`${styles[show ? 'show' : 'hide']} ${styles.wrapper} `}>
-                <ClosableAlert {...props} setShow={setShow} /> 
+             {!unmount ?
+            <div onAnimationEnd={(e) => onTransitionEnd(e)} className={`${styles[props.show ? 'show' : 'hide']} `}>
+                <ClosableAlert {...props} />
             </div>
-            {/* : null} */}
+             : null}
         </React.Fragment>
     )
 }
 
 interface ClosableAlertProps extends AlertProps {
-    setShow: (showing: boolean) => void
+
 }
 const ClosableAlert = (props: ClosableAlertProps) => {
-    const { setShow, banner, cancellable, type, delay, title, message, action, buttonTitle } = props;
-    const close = () => setShow(false);
-    const style = `${styles.alert} ${styles[type]} ${banner ? styles.banner : ''}`;
+    const { onDismiss, banner, dismissible, type, delay, title, message, action, buttonTitle } = props;
+    const btnTitle = buttonTitle || "OK";
+    const close = () => onDismiss(false);
+    if (delay) {
+        setTimeout(close, delay)
+    }
+    const style = `${styles.alert} ${styles[type]} ${banner ? styles.banner : ''} ${dismissible ? styles.dismissible : ''}`;
     return (
         <div className={style}>
             <div>
-                <div className={styles.alertTitle}>{title}</div>
+                {title ? <div className={styles.alertTitle}>{title}</div> : null}
                 <p className={styles.alertMessage}>{message}</p>
             </div>
             <div className={styles.actions}>
-                {cancellable ? <div onClick={close}>X</div> : null}
-                <button className={styles[type]} onClick={() => action()}>{buttonTitle}</button>
+                {dismissible ? <div className={styles.dismiss} onClick={close}>+</div> : null}
+                {action ? <button className={styles[type]} onClick={() => action()}>{btnTitle}</button> : null}
             </div>
         </div>
     )
