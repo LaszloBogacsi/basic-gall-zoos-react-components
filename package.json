@@ -38,7 +38,16 @@
     ]
   },
   "bit": {
-    "env": {},
+    "env": {
+      "compiler": "bit.envs/compilers/react-typescript@3.1.61",
+      "rawConfig": {
+        "tsconfig": {
+          "compilerOptions": {
+            "module": "CommonJS"
+          }
+        }
+      }
+    },
     "componentsDefaultDirectory": "components/{name}",
     "packageManager": "yarn"
   },

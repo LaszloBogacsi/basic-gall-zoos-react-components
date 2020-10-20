@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './Alert.css'
-type AlertType = 'success' | 'failure' | 'info'
+type AlertType = 'success' | 'failure' | 'info';
 
 interface AlertProps {
     show: boolean
