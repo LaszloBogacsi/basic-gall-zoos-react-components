@@ -37,6 +37,10 @@
       "last 1 safari version"
     ]
   },
+  "peerDependencies": {
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
   "bit": {
     "env": {
       "compiler": "bit.envs/compilers/react-typescript@3.1.61"
