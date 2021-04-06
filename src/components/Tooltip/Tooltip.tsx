@@ -1,7 +1,7 @@
 import React, {ReactNode, useState} from "react";
-
+import styles from './styles.module.css'
 interface TooltipProps {
-    content: string
+    content?: string
     children: ReactNode;
 }
 
@@ -10,12 +10,14 @@ export default (props: TooltipProps) => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
-        <div>
-            {isVisible && <div onMouseLeave={() => setIsVisible(false)}>
-                {content}
+        <div className={styles.tooltip} onMouseLeave={() => setIsVisible(false)}>
+            {isVisible && content && <div className={`${styles.tooltipLeft} ${ styles.tooltipBubble}`} >
+                <div className={styles.tooltipMessage}>
+                    {content}
+                </div>
             </div>
             }
-            <div onMouseEnter={() => setIsVisible(true)}>
+            <div onMouseOver={() => setIsVisible(true)}>
                 {children}
             </div>
         </div>
