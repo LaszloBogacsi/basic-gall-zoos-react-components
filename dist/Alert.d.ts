@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import './Alert.css';
-declare type AlertType = 'success' | 'failure' | 'info';
+declare type AlertType = 'success' | 'failure' | 'info' | 'warning';
 interface AlertProps {
     show: boolean;
     onDismiss: (show: boolean) => void;

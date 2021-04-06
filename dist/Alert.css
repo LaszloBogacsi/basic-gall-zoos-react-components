@@ -120,6 +120,22 @@
     color: #1e5e67;
 }
 
+.warning {
+    background-color: #f3dc8a;
+    color: #4e4411;
+}
+
+.warning .alertTitle {
+    color: #675b1e;
+}
+.warning .alertMessage {
+    color: #4e4411;
+}
+.actions button.warning {
+    border-color: #675b1e;
+    color: #675b1e;
+}
+
 
 .alertTitle {
     font-size: 1.25rem;

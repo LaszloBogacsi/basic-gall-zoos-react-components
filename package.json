@@ -39,19 +39,15 @@
   },
   "bit": {
     "env": {
-      "compiler": "bit.envs/compilers/react-typescript@3.1.61",
-      "rawConfig": {
-        "tsconfig": {
-          "compilerOptions": {
-            "module": "CommonJS"
-          }
-        }
-      }
+      "compiler": "bit.envs/compilers/react-typescript@3.1.61"
     },
     "componentsDefaultDirectory": "components/{name}",
     "packageManager": "yarn"
   },
   "devDependencies": {
     "@types/react-transition-group": "^4.4.0"
+  },
+  "peerDependencies": {
+    "react": "^16.14.0"
   }
 }

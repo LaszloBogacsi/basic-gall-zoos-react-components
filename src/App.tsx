@@ -10,7 +10,7 @@ function App() {
             <Alert
                 show={show}
                 onDismiss={setShow}
-                type={"success"}
+                type={"warning"}
                 message={"This is the main message"}
                 banner
                 unMountOnExit
